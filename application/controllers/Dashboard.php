@@ -1,14 +1,19 @@
 <?php
 
-defined('BASEPATH') OR exit('No direct script access allowed');
+defined('BASEPATH') or exit('No direct script access allowed');
 
-class Dashboard extends CI_Controller {
+class Dashboard extends CI_Controller
+{
 
-    public function __construct() {
+    public function __construct()
+    {
         parent::__construct();
+
+        $this->load->helper('url');
     }
 
-    function login() {
+    public function index()
+    {
         $pageData = array();
         $pageData['template'] = 'panel/dashboard/page';
 
