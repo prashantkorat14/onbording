@@ -1,6 +1,6 @@
 <?php
 
-defined('BASEPATH') OR exit('No direct script access allowed');
+defined('BASEPATH') or exit('No direct script access allowed');
 
 class Signup extends CI_Controller {
 
@@ -11,7 +11,7 @@ class Signup extends CI_Controller {
     }
 
     // login form
-    function index() {
+    public function index() {
         $this->load->helper(array('form', 'url'));
 
         $this->form_validation->set_rules('u_email', 'Email', 'trim|required|valid_email|callback_email_check');
@@ -21,8 +21,8 @@ class Signup extends CI_Controller {
         $this->form_validation->set_rules('u_phone_no', 'Phone No', 'trim|required');
         $this->form_validation->set_rules('u_company_size', 'Company Size', 'trim|required');
 
-        if ($this->form_validation->run() == FALSE) {
-            $pageData = array();
+        if ($this->form_validation->run() == false) {
+            $pageData = $this->input->post();
             $pageData['template'] = 'auth/signup';
 
             $this->load->view('auth/layout', $pageData);
@@ -35,6 +35,8 @@ class Signup extends CI_Controller {
 
             saveData('', $saveData, 'auth.users', 'user_id');
 
+            $this->session->set_flashdata('successMsg', 'Please wait, We will contact you soon');
+
             // send welcome email here
             $this->sendEmail();
 
@@ -43,21 +45,21 @@ class Signup extends CI_Controller {
     }
 
     // callback function check user email exists or not
-    function email_check($email) {
+    public function email_check($email) {
         $res = $this->db->where('u_email', $email)
                 ->get('auth.users')
                 ->row_array();
 
         if ($res) {
-            return TRUE;
+            $this->form_validation->set_message('email_check', 'email is already registered with us');
+            return false;
         } else {
-            $this->form_validation->set_message('email_check', 'email is not registered with us');
-            return FALSE;
+            return true;
         }
     }
 
     // send email to user
-    function sendEmail() {
+    public function sendEmail() {
 
     }
 

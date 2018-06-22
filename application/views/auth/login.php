@@ -1,5 +1,10 @@
 <form action="" method="post">
     <div class="logo"><img src="<?php echo base_url() ?>assets/front/images/on-boardingly.png" alt=""></div>
+
+    <?php
+    echo (@$successMsg) ? '<p class="alert alert-success">' . $successMsg . '</p>' : '';
+    echo (@$errorMsg) ? '<p class="alert alert-danger">' . $errorMsg . '</p>' : '';
+    ?>
     <div class="form-group">
         <div class="input-group">
             <span class="input-group-addon" id="basic-addon1"><i class="fa fa-user-circle-o"></i></span>

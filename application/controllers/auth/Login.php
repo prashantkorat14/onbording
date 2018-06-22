@@ -15,8 +15,6 @@ class Login extends CI_Controller {
 
         $this->load->helper(array('form', 'url'));
 
-
-
         $this->form_validation->set_rules('u_email', 'Email', 'trim|required|valid_email|callback_email_check');
         $this->form_validation->set_rules('u_password', 'Pasword', 'trim|required|callback_password_check');
 
@@ -24,6 +22,8 @@ class Login extends CI_Controller {
             $pageData = array();
             $pageData['pageTitle'] = 'Login';
             $pageData['template'] = 'auth/login';
+            $pageData['successMsg'] = $this->session->flashdata('successMsg');
+            $pageData['errorMsg'] = $this->session->flashdata('errorMsg');
 
             $this->load->view('auth/layout', $pageData);
         }
@@ -53,6 +53,9 @@ class Login extends CI_Controller {
 
         if ($res) {
             // redirect to dashboard
+            $this->session->set_userdata($res);
+
+            redirect('dashboard');
             return TRUE;
         } else {
             $this->form_validation->set_message('password_check', 'Please enter valid credentials');
