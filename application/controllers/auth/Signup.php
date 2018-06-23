@@ -20,6 +20,7 @@ class Signup extends CI_Controller {
         $this->form_validation->set_rules('u_company_name', 'Company name', 'trim|required');
         $this->form_validation->set_rules('u_phone_no', 'Phone No', 'trim|required');
         $this->form_validation->set_rules('u_company_size', 'Company Size', 'trim|required');
+        $this->form_validation->set_rules('u_app_use_for', 'application use for', 'trim|required');
 
         if ($this->form_validation->run() == false) {
             $pageData = $this->input->post();
@@ -28,7 +29,7 @@ class Signup extends CI_Controller {
             $this->load->view('auth/layout', $pageData);
         } else {
             $saveData = array();
-            $fields = array('u_email', 'u_first_name', 'u_last_name', 'u_company_name', 'u_phone_no', 'u_company_size');
+            $fields = array('u_email', 'u_first_name', 'u_last_name', 'u_company_name', 'u_phone_no', 'u_company_size', 'u_app_use_for');
             foreach ($fields as $f) {
                 $saveData[$f] = $this->input->post($f);
             }
