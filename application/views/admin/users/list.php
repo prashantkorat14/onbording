@@ -3,7 +3,7 @@
         <h3>User List</h3>
     </div>
     <div class="head-act">
-        <a href="<?php echo site_url('admin/user/ajaxSave'); ?>" class="head-btn load-form">Create New</a>
+        <a href="<?php echo site_url('admin/users/ajaxSave'); ?>" class="head-btn func-load-form">Create New</a>
     </div>
 </div>
 
