@@ -12,10 +12,10 @@ class Home extends CI_Controller {
 
     public function index() {
         $pageData = array();
-        $pageData['pageTitle'] = 'Onboardingly : Price';
-        $pageData['template'] = 'home';
+        $pageData['pageTitle'] = 'Onboardingly : Home';
+        $pageData['template'] = 'front/home';
 
-        $this->load->view('layout', $pageData);
+        $this->load->view('front/layout', $pageData);
     }
 
 }

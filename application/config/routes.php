@@ -54,6 +54,16 @@ $route['default_controller'] = 'home';
 $route['404_override'] = '';
 $route['translate_uri_dashes'] = TRUE;
 
+// admin panel routes
+$route['admin'] = 'admin/auth/login';
+$route['admin/login'] = 'admin/auth/login';
+
+// front user panel
 $route['login'] = 'auth/login';
 $route['forget-password'] = 'auth/forget_password';
 $route['signup'] = 'auth/signup';
+
+//front end routes
+$route['privacy'] = 'pages/privacy';
+$route['terms'] = 'pages/terms';
+$route['security'] = 'pages/security';
