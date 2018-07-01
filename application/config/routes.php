@@ -55,8 +55,8 @@ $route['404_override'] = '';
 $route['translate_uri_dashes'] = TRUE;
 
 // admin panel routes
-$route['admin'] = 'admin/auth/login';
-$route['admin/login'] = 'admin/auth/login';
+$route['admin'] = 'admin/login';
+$route['admin/login'] = 'admin/login';
 
 // front user panel
 $route['login'] = 'auth/login';

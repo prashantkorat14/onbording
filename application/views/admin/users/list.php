@@ -65,7 +65,7 @@
         listTemplate += '                <th>Name</th>';
         listTemplate += '                <th>Email</th>';
         listTemplate += '                <th>Status</th>';
-        listTemplate += '                <th>Action</th>';
+        listTemplate += '                <th class="text-right">Action</th>';
         listTemplate += '            </tr>';
         listTemplate += '        </thead>';
         listTemplate += '        <tbody>';

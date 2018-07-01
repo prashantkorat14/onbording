@@ -48,10 +48,11 @@ class Login extends CI_Controller {
         $res = $this->db
                 ->where('u_email', $this->input->post('u_email'))
                 ->where('u_password', md5($this->input->post('u_password')))
+                ->where_in('user_type_id', array(1, 2))
                 ->get('auth.users')
                 ->row_array();
 
-        if ($res) {
+        if ($res['u_status'] == 1) {
             // redirect to dashboard
             $session_array = array();
             $session_array['admin'] = $res;
@@ -59,6 +60,12 @@ class Login extends CI_Controller {
 
             redirect('admin/dashboard');
             return TRUE;
+        } else if ($res['u_status'] == 2) {
+            $this->form_validation->set_message('password_check', 'Please wait... your account is peding for review.');
+            return FALSE;
+        } else if ($res['u_status'] == 3) {
+            $this->form_validation->set_message('password_check', 'Your account is suspend.');
+            return FALSE;
         } else {
             $this->form_validation->set_message('password_check', 'Please enter valid credentials');
             return FALSE;
